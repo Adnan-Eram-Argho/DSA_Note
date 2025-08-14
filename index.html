@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ STL ডকুমেন্ট: সেট, ম্যাপ, প্রায়োরিটি কিউ, বিএসটি, ভেক্টর, কিউ, স্ট্যাক, লিস্ট</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h3 {
+            color: var(--dark-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        h4 {
+            color: var(--dark-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent-color);
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #333;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .note {
+            background-color: #fffbea;
+            border-left: 4px solid var(--warning-color);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .tip {
+            background-color: #eafaf1;
+            border-left: 4px solid var(--success-color);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .navigation {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .navigation ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+        
+        .navigation li {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .navigation a:hover {
+            color: var(--light-color);
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .navigation ul {
+                flex-direction: column;
+            }
+            
+            .navigation li {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>C++ STL ডকুমেন্ট</h1>
+            <p>সেট, ম্যাপ, প্রায়োরিটি কিউ, বিএসটি, ভেক্টর, কিউ, স্ট্যাক, লিস্ট</p>
+        </header>
+        
+        <div class="navigation">
+            <ul>
+                <li><a href="#introduction">ভূমিকা</a></li>
+                <li><a href="#time-complexity">সময় জটিলতা</a></li>
+                <li><a href="#vector">ভেক্টর</a></li>
+                <li><a href="#list">লিস্ট</a></li>
+                <li><a href="#stack">স্ট্যাক</a></li>
+                <li><a href="#queue">কিউ</a></li>
+                <li><a href="#priority-queue">প্রায়োরিটি কিউ</a></li>
+                <li><a href="#pair">পেয়ার</a></li>
+                <li><a href="#map">ম্যাপ</a></li>
+                <li><a href="#set">সেট</a></li>
+                <li><a href="#bst">বাইনারি সার্চ ট্রি</a></li>
+                <li><a href="#comparison">সংক্ষিপ্ত তুলনা</a></li>
+                <li><a href="#conclusion">উপসংহার</a></li>
+            </ul>
+        </div>
+        
+        <section id="introduction">
+            <h2>ভূমিকা</h2>
+            <p>এই ডকুমেন্টটি C++ STL (Standard Template Library) এর প্রধান কন্টেইনারগুলো নিয়ে সহজ বাংলায় লেখা হয়েছে। প্রতিটি কন্টেইনারের ব্যবহার, সুবিধা, অসুবিধা এবং সময় জটিলতা আলোচনা করা হয়েছে।</p>
+        </section>
+        
+        <section id="time-complexity">
+            <h2>সময় জটিলতা (Time Complexity)</h2>
+            
+            <h3>নোটেশন</h3>
+            <ul>
+                <li><strong>ওমেগা (Ω) নোটেশন</strong>: সেরা ক্ষেত্রে (Best case)</li>
+                <li><strong>থিটা (Θ) নোটেশন</strong>: গড় ক্ষেত্রে (Average case)</li>
+                <li><strong>বিগ ও (O) নোটেশন</strong>: সবচেয়ে খারাপ ক্ষেত্রে (Worst case)</li>
+            </ul>
+            
+            <h3>সাধারণ জটিলতা (ভাল থেকে খারাপ)</h3>
+            <ol>
+                <li><strong>O(1)</strong> - কনস্ট্যান্ট (Constant)</li>
+                <li><strong>O(log n)</strong> - লগারিদমিক (Logarithmic)</li>
+                <li><strong>O(√n)</strong> - স্কয়ার রুট (Square root)</li>
+                <li><strong>O(n)</strong> - লিনিয়ার (Linear)</li>
+                <li><strong>O(n log n)</strong> - লিনিয়ারিদমিক (Linearithmic)</li>
+                <li><strong>O(n²)</strong> - কোয়াড্রাটিক (Quadratic)</li>
+            </ol>
+            
+            <div class="note">
+                <p><strong>উদাহরণস্বরূপ</strong>, n=1000 হলে:</p>
+                <ul>
+                    <li>কনস্ট্যান্ট = 1</li>
+                    <li>লিনিয়ার = 1000</li>
+                    <li>লগারিদমিক = 10</li>
+                    <li>স্কয়ার রুট = 32</li>
+                    <li>লিনিয়ারিদমিক = 10000</li>
+                    <li>কোয়াড্রাটিক = 1000000</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="vector">
+            <h2>ভেক্টর (Vector)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>ভেক্টর হল একটি ডায়নামিক অ্যারে যা স্বয়ংক্রিয়ভাবে আকার পরিবর্তন করতে পারে। এটি মেমরিতে ক্রমাগতভাবে সংরক্ষিত থাকে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন দ্রুত র্যান্ডম অ্যাক্সেস প্রয়োজন</li>
+                <li>যখন শেষে উপাদান যোগ/অপসারণ করতে হয়</li>
+                <li>যখন মেমরি কন্টিগুয়াস (পাশাপাশি) থাকা প্রয়োজন</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;vector&gt;
+using namespace std;
+
+// ভেক্টর তৈরি
+vector&lt;int&gt; v; // O(1)
+vector&lt;int&gt; v(5); // 5টি উপাদান সহ ভেক্টর, O(N)
+vector&lt;int&gt; v(5, 10); // 5টি উপাদান, প্রতিটির মান 10, O(N)
+vector&lt;int&gt; v2(v); // v কপি করে, O(N)
+
+// ক্যাপাসিটি ফাংশন
+v.size(); // ভেক্টরের আকার রিটার্ন করে, O(1)
+v.max_size(); // ভেক্টরের সর্বোচ্চ সম্ভাব্য আকার, O(1)
+v.capacity(); // বর্তমান ক্যাপাসিটি, O(1)
+v.empty(); // ভেক্টর খালি কিনা চেক করে, O(1)
+v.clear(); // সব উপাদান মুছে ফেলে, O(N)
+
+// মডিফায়ার ফাংশন
+v.push_back(10); // শেষে উপাদান যোগ করে, O(1)
+v.pop_back(); // শেষের উপাদান সরায়, O(1)
+v.insert(v.begin() + 2, 20); // নির্দিষ্ট পজিশনে উপাদান যোগ করে, O(N)
+v.erase(v.begin() + 2); // নির্দিষ্ট পজিশনের উপাদান সরায়, O(N)
+
+// এলিমেন্ট অ্যাক্সেস
+v[2]; // ২য় ইনডেক্সের উপাদান অ্যাক্সেস, O(1)
+v.at(2); // ২য় ইনডেক্সের উপাদান অ্যাক্সেস (বাউন্ড চেক সহ), O(1)
+v.front(); // প্রথম উপাদান, O(1)
+v.back(); // শেষ উপাদান, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; v;
+    
+    // উপাদান যোগ করা
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    
+    // উপাদান অ্যাক্সেস করা
+    cout &lt;&lt; "প্রথম উপাদান: " &lt;&lt; v.front() &lt;&lt; endl;
+    cout &lt;&lt; "শেষ উপাদান: " &lt;&lt; v.back() &lt;&lt; endl;
+    cout &lt;&lt; "২য় ইনডেক্সের উপাদান: " &lt;&lt; v[2] &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা
+    cout &lt;&lt; "ভেক্টরের উপাদানগুলো: ";
+    for(int i = 0; i &lt; v.size(); i++) {
+        cout &lt;&lt; v[i] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    // শেষের উপাদান সরানো
+    v.pop_back();
+    
+    cout &lt;&lt; "pop_back এর পর ভেক্টর: ";
+    for(int i = 0; i &lt; v.size(); i++) {
+        cout &lt;&lt; v[i] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="list">
+            <h2>লিস্ট (List)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>লিস্ট হল একটি ডাবলি লিংকড লিস্ট যা দ্রুত ইনসারশন এবং ডিলিশন সমর্থন করে। এটি মেমরিতে নন-কন্টিগুয়াসভাবে সংরক্ষিত থাকে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন শুরু বা শেষে ঘন ঘন ইনসারশন/ডিলিশন করতে হয়</li>
+                <li>যখন মাঝখানে ইনসারশন/ডিলিশন করতে হয়</li>
+                <li>যখন র্যান্ডম অ্যাক্সেস কম প্রয়োজন</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;list&gt;
+using namespace std;
+
+// লিস্ট তৈরি
+list&lt;int&gt; myList; // O(1)
+list&lt;int&gt; myList(5); // 5টি উপাদান সহ লিস্ট, O(N)
+list&lt;int&gt; myList(5, 10); // 5টি উপাদান, প্রতিটির মান 10, O(N)
+list&lt;int&gt; myList2(myList); // myList কপি করে, O(N)
+
+// ক্যাপাসিটি ফাংশন
+myList.size(); // লিস্টের আকার রিটার্ন করে, O(1)
+myList.max_size(); // লিস্টের সর্বোচ্চ সম্ভাব্য আকার, O(1)
+myList.empty(); // লিস্ট খালি কিনা চেক করে, O(1)
+myList.clear(); // সব উপাদান মুছে ফেলে, O(N)
+
+// মডিফায়ার ফাংশন
+myList.push_front(10); // শুরুতে উপাদান যোগ করে, O(1)
+myList.push_back(20); // শেষে উপাদান যোগ করে, O(1)
+myList.pop_front(); // শুরুর উপাদান সরায়, O(1)
+myList.pop_back(); // শেষের উপাদান সরায়, O(1)
+myList.insert(it, 30); // নির্দিষ্ট পজিশনে উপাদান যোগ করে, O(1)
+myList.erase(it); // নির্দিষ্ট পজিশনের উপাদান সরায়, O(1)
+
+// অপারেশন
+myList.remove(10); // নির্দিষ্ট মানের সব উপাদান সরায়, O(N)
+myList.sort(); // লিস্ট সর্ট করে, O(N log N)
+myList.reverse(); // লিস্ট রিভার্স করে, O(N)
+myList.unique(); // ডুপ্লিকেট উপাদান সরায়, O(N)
+
+// এলিমেন্ট অ্যাক্সেস
+myList.front(); // প্রথম উপাদান, O(1)
+myList.back(); // শেষ উপাদান, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main() {
+    list&lt;int&gt; myList;
+    
+    // উপাদান যোগ করা
+    myList.push_back(20);
+    myList.push_back(30);
+    myList.push_front(10);
+    
+    // উপাদান অ্যাক্সেস করা
+    cout &lt;&lt; "প্রথম উপাদান: " &lt;&lt; myList.front() &lt;&lt; endl;
+    cout &lt;&lt; "শেষ উপাদান: " &lt;&lt; myList.back() &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা
+    cout &lt;&lt; "লিস্টের উপাদানগুলো: ";
+    for(auto it = myList.begin(); it != myList.end(); it++) {
+        cout &lt;&lt; *it &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    // শুরুর উপাদান সরানো
+    myList.pop_front();
+    
+    cout &lt;&lt; "pop_front এর পর লিস্ট: ";
+    for(auto it = myList.begin(); it != myList.end(); it++) {
+        cout &lt;&lt; *it &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    // লিস্ট রিভার্স করা
+    myList.reverse();
+    cout &lt;&lt; "রিভার্স করার পর লিস্ট: ";
+    for(auto it = myList.begin(); it != myList.end(); it++) {
+        cout &lt;&lt; *it &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="stack">
+            <h2>স্ট্যাক (Stack)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>স্ট্যাক হল LIFO (Last In First Out) ডাটা স্ট্রাকচার। এটি যেকোনো কন্টেইনার (ভেক্টর, লিস্ট, ডেক) দিয়ে ইমপ্লিমেন্ট করা যায়।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন LIFO অর্ডার প্রয়োজন</li>
+                <li>যখন আনডো অপারেশন করতে হয়</li>
+                <li>যখন DFS (Depth First Search) ইমপ্লিমেন্ট করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;stack&gt;
+using namespace std;
+
+// স্ট্যাক তৈরি
+stack&lt;int&gt; st; // O(1)
+
+// মডিফায়ার ফাংশন
+st.push(10); // স্ট্যাকের উপরে উপাদান যোগ করে, O(1)
+st.pop(); // স্ট্যাকের উপরের উপাদান সরায়, O(1)
+
+// অ্যাক্সেস ফাংশন
+st.top(); // স্ট্যাকের উপরের উপাদান রিটার্ন করে, O(1)
+st.size(); // স্ট্যাকের আকার রিটার্ন করে, O(1)
+st.empty(); // স্ট্যাক খালি কিনা চেক করে, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main() {
+    stack&lt;int&gt; st;
+    
+    // উপাদান যোগ করা
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    
+    // স্ট্যাকের আকার
+    cout &lt;&lt; "স্ট্যাকের আকার: " &lt;&lt; st.size() &lt;&lt; endl;
+    
+    // উপরের উপাদান
+    cout &lt;&lt; "উপরের উপাদান: " &lt;&lt; st.top() &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা এবং সরানো
+    cout &lt;&lt; "স্ট্যাকের উপাদানগুলো: ";
+    while(!st.empty()) {
+        cout &lt;&lt; st.top() &lt;&lt; " ";
+        st.pop();
+    }
+    cout &lt;&lt; endl;
+    
+    // স্ট্যাক খালি কিনা চেক করা
+    if(st.empty()) {
+        cout &lt;&lt; "স্ট্যাক এখন খালি" &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="queue">
+            <h2>কিউ (Queue)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>কিউ হল FIFO (First In First Out) ডাটা স্ট্রাকচার। এটি সাধারণত লিস্ট বা ডেক দিয়ে ইমপ্লিমেন্ট করা হয়।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন FIFO অর্ডার প্রয়োজন</li>
+                <li>যখন বিএফএস (Breadth First Search) ইমপ্লিমেন্ট করতে হয়</li>
+                <li>যখন সিপিইউ সিডিউলিং করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;queue&gt;
+using namespace std;
+
+// কিউ তৈরি
+queue&lt;int&gt; q; // O(1)
+
+// মডিফায়ার ফাংশন
+q.push(10); // কিউয়ের শেষে উপাদান যোগ করে, O(1)
+q.pop(); // কিউয়ের সামনের উপাদান সরায়, O(1)
+
+// অ্যাক্সেস ফাংশন
+q.front(); // কিউয়ের সামনের উপাদান রিটার্ন করে, O(1)
+q.back(); // কিউয়ের শেষের উপাদান রিটার্ন করে, O(1)
+q.size(); // কিউয়ের আকার রিটার্ন করে, O(1)
+q.empty(); // কিউ খালি কিনা চেক করে, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    queue&lt;int&gt; q;
+    
+    // উপাদান যোগ করা
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    
+    // কিউয়ের আকার
+    cout &lt;&lt; "কিউয়ের আকার: " &lt;&lt; q.size() &lt;&lt; endl;
+    
+    // সামনে এবং শেষের উপাদান
+    cout &lt;&lt; "সামনের উপাদান: " &lt;&lt; q.front() &lt;&lt; endl;
+    cout &lt;&lt; "শেষের উপাদান: " &lt;&lt; q.back() &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা এবং সরানো
+    cout &lt;&lt; "কিউয়ের উপাদানগুলো: ";
+    while(!q.empty()) {
+        cout &lt;&lt; q.front() &lt;&lt; " ";
+        q.pop();
+    }
+    cout &lt;&lt; endl;
+    
+    // কিউ খালি কিনা চেক করা
+    if(q.empty()) {
+        cout &lt;&lt; "কিউ এখন খালি" &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="priority-queue">
+            <h2>প্রায়োরিটি কিউ (Priority Queue)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>প্রায়োরিটি কিউ হল একটি হিপ (Heap) ডাটা স্ট্রাকচার যা উপাদানগুলোকে প্রায়োরিটি অনুসারে সাজায়। ডিফল্টভাবে এটি ম্যাক্স-হিপ (বড় মান উপরে) হিসেবে কাজ করে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন সর্বোচ্চ/সর্বনিম্ন মানের উপাদান দ্রুত পেতে হয়</li>
+                <li>যখন ডায়জক্ট্রা বা প্রিমের অ্যালগরিদম ইমপ্লিমেন্ট করতে হয়</li>
+                <li>যখন হাফম্যান কোডিং করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;queue&gt;
+using namespace std;
+
+// প্রায়োরিটি কিউ তৈরি
+priority_queue&lt;int&gt; pq; // ম্যাক্স-হিপ (বড় মান উপরে), O(1)
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq; // মিন-হিপ (ছোট মান উপরে), O(1)
+
+// মডিফায়ার ফাংশন
+pq.push(10); // প্রায়োরিটি কিউতে উপাদান যোগ করে, O(log n)
+pq.pop(); // প্রায়োরিটি কিউ থেকে উপরের উপাদান সরায়, O(log n)
+
+// অ্যাক্সেস ফাংশন
+pq.top(); // প্রায়োরিটি কিউয়ের উপরের উপাদান রিটার্ন করে, O(1)
+pq.size(); // প্রায়োরিটি কিউয়ের আকার রিটার্ন করে, O(1)
+pq.empty(); // প্রায়োরিটি কিউ খালি কিনা চেক করে, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    // ম্যাক্স-হিপ (বড় মান উপরে)
+    priority_queue&lt;int&gt; maxHeap;
+    
+    // উপাদান যোগ করা
+    maxHeap.push(30);
+    maxHeap.push(10);
+    maxHeap.push(50);
+    maxHeap.push(20);
+    
+    // সব উপাদান প্রিন্ট করা এবং সরানো
+    cout &lt;&lt; "ম্যাক্স-হিপ থেকে উপাদানগুলো: ";
+    while(!maxHeap.empty()) {
+        cout &lt;&lt; maxHeap.top() &lt;&lt; " ";
+        maxHeap.pop();
+    }
+    cout &lt;&lt; endl;
+    
+    // মিন-হিপ (ছোট মান উপরে)
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; minHeap;
+    
+    // উপাদান যোগ করা
+    minHeap.push(30);
+    minHeap.push(10);
+    minHeap.push(50);
+    minHeap.push(20);
+    
+    // সব উপাদান প্রিন্ট করা এবং সরানো
+    cout &lt;&lt; "মিন-হিপ থেকে উপাদানগুলো: ";
+    while(!minHeap.empty()) {
+        cout &lt;&lt; minHeap.top() &lt;&lt; " ";
+        minHeap.pop();
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="pair">
+            <h2>পেয়ার (Pair)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>পেয়ার হল একটি স্ট্রাকচার যা দুটি ভিন্ন টাইপের ডাটা একসাথে রাখতে পারে। এটি ম্যাপ, সেট ইত্যাদিতে ব্যবহৃত হয়।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন দুটি সম্পর্কিত মান একসাথে রাখতে হয়</li>
+                <li>যখন ম্যাপে কী-ভ্যালু পেয়ার হিসেবে ডাটা রাখতে হয়</li>
+                <li>যখন ফাংশন থেকে দুটি মান রিটার্ন করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;utility&gt;
+using namespace std;
+
+// পেয়ার তৈরি
+pair&lt;int, string&gt; p1; // ডিফল্ট পেয়ার, O(1)
+pair&lt;int, string&gt; p2(1, "apple"); // ভ্যালু দিয়ে পেয়ার, O(1)
+auto p3 = make_pair(2, "banana"); // make_pair দিয়ে পেয়ার, O(1)
+pair&lt;int, string&gt; p4 = {3, "orange"}; // ইউনিফর্ম ইনিশিয়ালাইজেশন, O(1)
+
+// এলিমেন্ট অ্যাক্সেস
+p2.first; // প্রথম এলিমেন্ট অ্যাক্সেস, O(1)
+p2.second; // দ্বিতীয় এলিমেন্ট অ্যাক্সেস, O(1)
+
+// অপারেশন
+p1.swap(p2); // দুটি পেয়ার সোয়াপ করা, O(1)
+swap(p1, p2); // std::swap দিয়ে সোয়াপ, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;utility&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // পেয়ার তৈরি
+    pair&lt;int, string&gt; p1(1, "apple");
+    pair&lt;int, string&gt; p2 = make_pair(2, "banana");
+    pair&lt;int, string&gt; p3 = {3, "orange"};
+    
+    // এলিমেন্ট অ্যাক্সেস করা
+    cout &lt;&lt; "p1: " &lt;&lt; p1.first &lt;&lt; ", " &lt;&lt; p1.second &lt;&lt; endl;
+    cout &lt;&lt; "p2: " &lt;&lt; p2.first &lt;&lt; ", " &lt;&lt; p2.second &lt;&lt; endl;
+    cout &lt;&lt; "p3: " &lt;&lt; p3.first &lt;&lt; ", " &lt;&lt; p3.second &lt;&lt; endl;
+    
+    // এলিমেন্ট পরিবর্তন করা
+    p1.second = "mango";
+    cout &lt;&lt; "p1 পরিবর্তনের পর: " &lt;&lt; p1.first &lt;&lt; ", " &lt;&lt; p1.second &lt;&lt; endl;
+    
+    // পেয়ার তুলনা করা
+    if(p1 &lt; p2) {
+        cout &lt;&lt; "p1, p2 এর চেয়ে ছোট" &lt;&lt; endl;
+    }
+    
+    // পেয়ার সোয়াপ করা
+    cout &lt;&lt; "সোয়াপের আগে:" &lt;&lt; endl;
+    cout &lt;&lt; "p1: " &lt;&lt; p1.first &lt;&lt; ", " &lt;&lt; p1.second &lt;&lt; endl;
+    cout &lt;&lt; "p2: " &lt;&lt; p2.first &lt;&lt; ", " &lt;&lt; p2.second &lt;&lt; endl;
+    
+    p1.swap(p2);
+    
+    cout &lt;&lt; "সোয়াপের পর:" &lt;&lt; endl;
+    cout &lt;&lt; "p1: " &lt;&lt; p1.first &lt;&lt; ", " &lt;&lt; p1.second &lt;&lt; endl;
+    cout &lt;&lt; "p2: " &lt;&lt; p2.first &lt;&lt; ", " &lt;&lt; p2.second &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="map">
+            <h2>ম্যাপ (Map)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>ম্যাপ হল একটি অ্যাসোসিয়েটিভ কন্টেইনার যা কী-ভ্যালু পেয়ার আকারে ডাটা সংরক্ষণ করে। কীগুলো ইউনিক এবং সর্টেড অর্ডারে থাকে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন কী দিয়ে দ্রুত সার্চ করতে হয়</li>
+                <li>যখন কী-ভ্যালু পেয়ার আকারে ডাটা রাখতে হয়</li>
+                <li>যখন কী অনুসারে সর্টেড অর্ডারে ডাটা রাখতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;map&gt;
+using namespace std;
+
+// ম্যাপ তৈরি
+map&lt;int, string&gt; m; // O(1)
+
+// মডিফায়ার ফাংশন
+m[1] = "One"; // কী দিয়ে ভ্যালু অ্যাসাইন করা, O(log n)
+m.insert({2, "Two"}); // ইনসার্ট ফাংশন দিয়ে উপাদান যোগ করা, O(log n)
+m.erase(1); // কী দিয়ে উপাদান সরানো, O(log n)
+m.clear(); // সব উপাদান মুছে ফেলা, O(n)
+
+// অ্যাক্সেস ফাংশন
+m.at(1); // কী দিয়ে ভ্যালু অ্যাক্সেস (বাউন্ড চেক সহ), O(log n)
+m.find(1); // কী দিয়ে আইটারেটর খুঁজে বের করা, O(log n)
+m.count(1); // কী আছে কিনা চেক করা, O(log n)
+m.size(); // ম্যাপের আকার রিটার্ন করা, O(1)
+m.empty(); // ম্যাপ খালি কিনা চেক করা, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // ম্যাপ তৈরি
+    map&lt;int, string&gt; m;
+    
+    // উপাদান যোগ করা
+    m[1] = "One";
+    m[2] = "Two";
+    m[3] = "Three";
+    m.insert({4, "Four"});
+    
+    // ম্যাপের আকার
+    cout &lt;&lt; "ম্যাপের আকার: " &lt;&lt; m.size() &lt;&lt; endl;
+    
+    // উপাদান অ্যাক্সেস করা
+    cout &lt;&lt; "কী 2 এর ভ্যালু: " &lt;&lt; m[2] &lt;&lt; endl;
+    cout &lt;&lt; "কী 3 এর ভ্যালু: " &lt;&lt; m.at(3) &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা
+    cout &lt;&lt; "ম্যাপের উপাদানগুলো:" &lt;&lt; endl;
+    for(auto it = m.begin(); it != m.end(); it++) {
+        cout &lt;&lt; it-&gt;first &lt;&lt; " =&gt; " &lt;&lt; it-&gt;second &lt;&lt; endl;
+    }
+    
+    // উপাদান সরানো
+    m.erase(2);
+    
+    cout &lt;&lt; "কী 2 সরানোর পর ম্যাপ:" &lt;&lt; endl;
+    for(auto it = m.begin(); it != m.end(); it++) {
+        cout &lt;&lt; it-&gt;first &lt;&lt; " =&gt; " &lt;&lt; it-&gt;second &lt;&lt; endl;
+    }
+    
+    // কী খুঁজে বের করা
+    if(m.find(3) != m.end()) {
+        cout &lt;&lt; "কী 3 ম্যাপে আছে" &lt;&lt; endl;
+    }
+    
+    if(m.count(5) == 0) {
+        cout &lt;&lt; "কী 5 ম্যাপে নেই" &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="set">
+            <h2>সেট (Set)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>সেট হল একটি অ্যাসোসিয়েটিভ কন্টেইনার যা ইউনিক উপাদান সর্টেড অর্ডারে সংরক্ষণ করে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন ইউনিক উপাদান রাখতে হয়</li>
+                <li>যখন উপাদান সর্টেড অর্ডারে রাখতে হয়</li>
+                <li>যখন দ্রুত সার্চ, ইনসারশন, ডিলিশন করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান ফাংশন এবং সময় জটিলতা</h3>
+            <pre><code>#include &lt;set&gt;
+using namespace std;
+
+// সেট তৈরি
+set&lt;int&gt; s; // O(1)
+
+// মডিফায়ার ফাংশন
+s.insert(10); // উপাদান যোগ করা, O(log n)
+s.erase(10); // উপাদান সরানো, O(log n)
+s.clear(); // সব উপাদান মুছে ফেলা, O(n)
+
+// অ্যাক্সেস ফাংশন
+s.find(10); // উপাদান খুঁজে বের করা, O(log n)
+s.count(10); // উপাদান আছে কিনা চেক করা, O(log n)
+s.size(); // সেটের আকার রিটার্ন করা, O(1)
+s.empty(); // সেট খালি কিনা চেক করা, O(1)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+#include &lt;set&gt;
+using namespace std;
+
+int main() {
+    // সেট তৈরি
+    set&lt;int&gt; s;
+    
+    // উপাদান যোগ করা
+    s.insert(30);
+    s.insert(10);
+    s.insert(20);
+    s.insert(40);
+    s.insert(20); // ডুপ্লিকেট, যোগ হবে না
+    
+    // সেটের আকার
+    cout &lt;&lt; "সেটের আকার: " &lt;&lt; s.size() &lt;&lt; endl;
+    
+    // সব উপাদান প্রিন্ট করা (সর্টেড অর্ডারে)
+    cout &lt;&lt; "সেটের উপাদানগুলো:" &lt;&lt; endl;
+    for(auto it = s.begin(); it != s.end(); it++) {
+        cout &lt;&lt; *it &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    // উপাদান সরানো
+    s.erase(20);
+    
+    cout &lt;&lt; "20 সরানোর পর সেট:" &lt;&lt; endl;
+    for(auto it = s.begin(); it != s.end(); it++) {
+        cout &lt;&lt; *it &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    // উপাদান খুঁজে বের করা
+    if(s.find(30) != s.end()) {
+        cout &lt;&lt; "30 সেটে আছে" &lt;&lt; endl;
+    }
+    
+    if(s.count(50) == 0) {
+        cout &lt;&lt; "50 সেটে নেই" &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="bst">
+            <h2>বাইনারি সার্চ ট্রি (BST)</h2>
+            
+            <h3>ভূমিকা</h3>
+            <p>বাইনারি সার্চ ট্রি (BST) হল একটি নোড-ভিত্তিক ডাটা স্ট্রাকচার যেখানে প্রতিটি নোডের সর্বোচ্চ দুটি চাইল্ড থাকে। বাম সাবট্রিতে সব মান রুটের চেয়ে ছোট এবং ডান সাবট্রিতে সব মান রুটের চেয়ে বড় থাকে।</p>
+            
+            <h3>যখন ব্যবহার করবেন</h3>
+            <ul>
+                <li>যখন ডাটা সর্টেড অর্ডারে রাখতে হয়</li>
+                <li>যখন দ্রুত সার্চ, ইনসারশন, ডিলিশন করতে হয়</li>
+                <li>যখন রেঞ্জ কোয়েরি করতে হয়</li>
+            </ul>
+            
+            <h3>প্রধান অপারেশন এবং সময় জটিলতা</h3>
+            <pre><code>// BST নোড স্ট্রাকচার
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+// ইনসারশন অপারেশন
+Node* insert(Node* root, int val) {
+    if(root == NULL) {
+        return new Node(val);
+    }
+    
+    if(val &lt; root-&gt;data) {
+        root-&gt;left = insert(root-&gt;left, val);
+    } else {
+        root-&gt;right = insert(root-&gt;right, val);
+    }
+    
+    return root;
+} // গড় ক্ষেত্রে O(log n), সবচেয়ে খারাপ ক্ষেত্রে O(n)
+
+// সার্চ অপারেশন
+bool search(Node* root, int val) {
+    if(root == NULL) {
+        return false;
+    }
+    
+    if(root-&gt;data == val) {
+        return true;
+    }
+    
+    if(val &lt; root-&gt;data) {
+        return search(root-&gt;left, val);
+    } else {
+        return search(root-&gt;right, val);
+    }
+} // গড় ক্ষেত্রে O(log n), সবচেয়ে খারাপ ক্ষেত্রে O(n)
+
+// ডিলিশন অপারেশন
+Node* deleteNode(Node* root, int val) {
+    if(root == NULL) {
+        return NULL;
+    }
+    
+    if(val &lt; root-&gt;data) {
+        root-&gt;left = deleteNode(root-&gt;left, val);
+    } else if(val &gt; root-&gt;data) {
+        root-&gt;right = deleteNode(root-&gt;right, val);
+    } else {
+        // নোড পাওয়া গেছে, এখন ডিলিট করতে হবে
+        if(root-&gt;left == NULL) {
+            Node* temp = root-&gt;right;
+            delete root;
+            return temp;
+        } else if(root-&gt;right == NULL) {
+            Node* temp = root-&gt;left;
+            delete root;
+            return temp;
+        }
+        
+        // নোডের দুটি চাইল্ড আছে
+        Node* temp = root-&gt;right;
+        while(temp-&gt;left != NULL) {
+            temp = temp-&gt;left;
+        }
+        
+        root-&gt;data = temp-&gt;data;
+        root-&gt;right = deleteNode(root-&gt;right, temp-&gt;data);
+    }
+    
+    return root;
+} // গড় ক্ষেত্রে O(log n), সবচেয়ে খারাপ ক্ষেত্রে O(n)
+
+// ইন-অর্ডার ট্রাভার্সাল (সর্টেড অর্ডারে প্রিন্ট করে)
+void inorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+    
+    inorder(root-&gt;left);
+    cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+    inorder(root-&gt;right);
+} // O(n)</code></pre>
+            
+            <h3>উদাহরণ</h3>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// BST নোড স্ট্রাকচার
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+// ইনসারশন অপারেশন
+Node* insert(Node* root, int val) {
+    if(root == NULL) {
+        return new Node(val);
+    }
+    
+    if(val &lt; root-&gt;data) {
+        root-&gt;left = insert(root-&gt;left, val);
+    } else {
+        root-&gt;right = insert(root-&gt;right, val);
+    }
+    
+    return root;
+}
+
+// সার্চ অপারেশন
+bool search(Node* root, int val) {
+    if(root == NULL) {
+        return false;
+    }
+    
+    if(root-&gt;data == val) {
+        return true;
+    }
+    
+    if(val &lt; root-&gt;data) {
+        return search(root-&gt;left, val);
+    } else {
+        return search(root-&gt;right, val);
+    }
+}
+
+// ইন-অর্ডার ট্রাভার্সাল
+void inorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+    
+    inorder(root-&gt;left);
+    cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+    inorder(root-&gt;right);
+}
+
+int main() {
+    Node* root = NULL;
+    
+    // উপাদান যোগ করা
+    root = insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 20);
+    root = insert(root, 40);
+    root = insert(root, 70);
+    root = insert(root, 60);
+    root = insert(root, 80);
+    
+    // ইন-অর্ডার ট্রাভার্সাল (সর্টেড অর্ডারে প্রিন্ট করবে)
+    cout &lt;&lt; "ইন-অর্ডার ট্রাভার্সাল: ";
+    inorder(root);
+    cout &lt;&lt; endl;
+    
+    // সার্চ অপারেশন
+    if(search(root, 40)) {
+        cout &lt;&lt; "40 ট্রিতে আছে" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "40 ট্রিতে নেই" &lt;&lt; endl;
+    }
+    
+    if(search(root, 90)) {
+        cout &lt;&lt; "90 ট্রিতে আছে" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "90 ট্রিতে নেই" &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+        </section>
+        
+        <section id="comparison">
+            <h2>সংক্ষিপ্ত তুলনা</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>কন্টেইনার</th>
+                            <th>ইনসারশন</th>
+                            <th>ডিলিশন</th>
+                            <th>সার্চ</th>
+                            <th>অ্যাক্সেস</th>
+                            <th>ব্যবহার</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ভেক্টর</td>
+                            <td>O(1) শেষে, O(n) মাঝখানে</td>
+                            <td>O(1) শেষে, O(n) মাঝখানে</td>
+                            <td>O(n)</td>
+                            <td>O(1)</td>
+                            <td>র্যান্ডম অ্যাক্সেসের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>লিস্ট</td>
+                            <td>O(1) শুরু/শেষে, O(n) মাঝখানে</td>
+                            <td>O(1) শুরু/শেষে, O(n) মাঝখানে</td>
+                            <td>O(n)</td>
+                            <td>O(n)</td>
+                            <td>ঘন ঘন ইনসারশন/ডিলিশনের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>স্ট্যাক</td>
+                            <td>O(1)</td>
+                            <td>O(1)</td>
+                            <td>O(n)</td>
+                            <td>O(1) শুধু উপরের উপাদান</td>
+                            <td>LIFO অপারেশনের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>কিউ</td>
+                            <td>O(1)</td>
+                            <td>O(1)</td>
+                            <td>O(n)</td>
+                            <td>O(1) শুধু সামনে/শেষের উপাদান</td>
+                            <td>FIFO অপারেশনের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>প্রায়োরিটি কিউ</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(1) শুধু উপরের উপাদান</td>
+                            <td>প্রায়োরিটি অনুসারে অ্যাক্সেসের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>ম্যাপ</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>কী-ভ্যালু পেয়ারের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>সেট</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>O(log n)</td>
+                            <td>ইউনিক উপাদানের জন্য</td>
+                        </tr>
+                        <tr>
+                            <td>বিএসটি</td>
+                            <td>O(log n) গড়, O(n) সবচেয়ে খারাপ</td>
+                            <td>O(log n) গড়, O(n) সবচেয়ে খারাপ</td>
+                            <td>O(log n) গড়, O(n) সবচেয়ে খারাপ</td>
+                            <td>O(log n) গড়, O(n) সবচেয়ে খারাপ</td>
+                            <td>সর্টেড ডাটা এবং রেঞ্জ কোয়েরির জন্য</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section id="conclusion">
+            <h2>উপসংহার</h2>
+            <p>এই ডকুমেন্টে C++ STL এর প্রধান কন্টেইনার এবং ডাটা স্ট্রাকচারগুলো নিয়ে আলোচনা করা হয়েছে। প্রতিটি কন্টেইনারের বৈশিষ্ট্য, সময় জটিলতা এবং ব্যবহারের ক্ষেত্র উল্লেখ করা হয়েছে। সঠিক কন্টেইনার নির্বাচন করা প্রোগ্রামের কার্যকারিতা বৃদ্ধি করতে সাহায্য করে।</p>
+            
+            <div class="tip">
+                <p><strong>টিপস:</strong> সঠিক কন্টেইনার নির্বাচন করার জন্য আপনার প্রয়োজনীয়তা বিবেচনা করুন। যদি আপনার দ্রুত র্যান্ডম অ্যাক্সেস প্রয়োজন হয়, ভেক্টর ব্যবহার করুন। যদি ঘন ঘন ইনসারশন/ডিলিশন প্রয়োজন হয়, লিস্ট ব্যবহার করুন। যদি কী-ভ্যালু পেয়ার প্রয়োজন হয়, ম্যাপ ব্যবহার করুন।</p>
+            </div>
+        </section>
+        
+        <div class="footer">
+            <p>&copy; 2023 C++ STL ডকুমেন্ট | সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </div>
+</body>
+</html>
